@@ -10,8 +10,8 @@ phases:
       - echo Installing source NPM dependencies...
       - npm install unit.js
       - apt-get update -qq
-      - eval $(ssh-agent -s)
       - 'which ssh-agent || ( apt-get install -qq openssh-client )'
+      - eval $(ssh-agent -s)
       - mkdir -p ~/.ssh
   build:
     commands:
