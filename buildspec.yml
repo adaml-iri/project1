@@ -23,7 +23,7 @@ phases:
       - 'which ssh-agent || ( apt-get install -qq openssh-client )'
       - eval $(ssh-agent -s)
       - echo $SSH_COMMAND
-      - ssh-add ~/.ssh/id_rsa
+      - ssh-add $SSH_PRIVATE_KEY
       - ssh -o StrictHostKeyChecking=no
       - ssh -tt $IP_ADDRESS $SSH_COMMAND
   build:
