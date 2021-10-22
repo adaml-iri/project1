@@ -17,12 +17,13 @@ phases:
       - echo Installing source NPM dependencies...
       - npm install unit.js
       - apt-get update -qq
+      - mkdir -p ~/.ssh
+      - echo $SSH_PRIVATE_KEY > ~/.ssh/id_rsa
       - 'which ssh-agent || ( apt-get install -qq openssh-client )'
       - eval $(ssh-agent -s)
       - echo $SSH_PRIVATE_KEY
       - echo $SSH_COMMAND
-      - ssh-add < echo $SSH_PRIVATE_KEY
-      - mkdir -p ~/.ssh
+      - ssh-add ~/.ssh/id_rsa
       - ssh -o StrictHostKeyChecking=no
       - ssh -tt $IP_ADDRESS $SSH_COMMAND
   build:
