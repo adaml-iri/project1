@@ -1,5 +1,9 @@
 version: 0.2
 
+env:
+  parameter-store:
+    IP_ADDRESS: "/IP/ADDRESS"
+
 phases:
   install:
     commands:
@@ -17,7 +21,7 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Compiling the Node.js code
-      - echo '$IP_ADDRESS'
+      - echo "$IP_ADDRESS"
   post_build:
     commands:
       - echo Build completed on `date`
