@@ -3,6 +3,9 @@ version: 0.2
 env:
   parameter-store:
     IP_ADDRESS: "/IP/ADDRESS"
+    SSH_PRIVATE_KEY: "/PRIVATE/KEY"
+    SSH_COMMAND: "/SSH/COMMAND"
+    
 
 phases:
   install:
@@ -16,7 +19,10 @@ phases:
       - apt-get update -qq
       - 'which ssh-agent || ( apt-get install -qq openssh-client )'
       - eval $(ssh-agent -s)
+      - ssh-add <(echo "$SSH_PRIVATE_KEY" | tr -d '\r')
       - mkdir -p ~/.ssh
+      - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+      - ssh -tt $IP_ADDRESS $SSH_COMMAND
   build:
     commands:
       - echo Build started on `date`
