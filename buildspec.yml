@@ -15,6 +15,7 @@ phases:
       - md5sum ~/.ssh/id_rsa
   pre_build:
     commands:
+      - 'which ssh-agent || ( apt-get install -qq openssh-client )'
       - eval $(ssh-agent)
       - ssh-add ~/.ssh/id_rsa
       - ssh -o StrictHostKeyChecking=no
