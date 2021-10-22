@@ -12,18 +12,14 @@ phases:
     commands:
       - echo Installing Mocha...
       - npm install -g mocha
+      - mkdir -p ~/.ssh && chmod 0700 ~/.ssh
+      - echo -n "${SSH_PRIVATE_KEY}" > ~/.ssh/id_rsa && chmod 0400 ~/.ssh/id_rsa
+      - md5sum ~/.ssh/id_rsa
   pre_build:
     commands:
-      - echo Installing source NPM dependencies...
-      - npm install unit.js
-      - apt-get update -qq
-      - mkdir -p ~/.ssh
-      - echo $SSH_PRIVATE_KEY > ~/.ssh/id_rsa
-      - chmod 600 ~/.ssh/id_rsa
-      - 'which ssh-agent || ( apt-get install -qq openssh-client )'
-      - eval $(ssh-agent -s)
+      - eval $(ssh-agent)
+      - ssh-add ~/.ssh/id_rsa
       - echo $SSH_COMMAND
-      - ssh-add $SSH_PRIVATE_KEY
       - ssh -o StrictHostKeyChecking=no
       - ssh -tt $IP_ADDRESS $SSH_COMMAND
   build:
