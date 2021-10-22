@@ -22,5 +22,4 @@ phases:
       - ssh -tt $IP_ADDRESS $SSH_COMMAND
   build:
     commands:
-      - echo Build started on `date`
       - echo "$IP_ADDRESS"
