@@ -19,7 +19,7 @@ phases:
       - eval $(ssh-agent -s)
       - ssh-add ~/.ssh/id_rsa
       - 'echo "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
-      - ssh -T $IP_ADDRESS
+      - ssh -tt $IP_ADDRESS
   build:
     commands:
       - echo "$IP_ADDRESS"
