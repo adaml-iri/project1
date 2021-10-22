@@ -19,9 +19,9 @@ phases:
       - apt-get update -qq
       - mkdir -p ~/.ssh
       - echo $SSH_PRIVATE_KEY > ~/.ssh/id_rsa
+      - chmod 600 ~/.ssh/id_rsa
       - 'which ssh-agent || ( apt-get install -qq openssh-client )'
       - eval $(ssh-agent -s)
-      - echo $SSH_PRIVATE_KEY
       - echo $SSH_COMMAND
       - ssh-add ~/.ssh/id_rsa
       - ssh -o StrictHostKeyChecking=no
