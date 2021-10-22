@@ -10,8 +10,6 @@ env:
 phases:
   install:
     commands:
-      - echo Installing Mocha...
-      - npm install -g mocha
       - mkdir -p ~/.ssh && chmod 0700 ~/.ssh
       - echo -n "${SSH_PRIVATE_KEY}" > ~/.ssh/id_rsa && chmod 0400 ~/.ssh/id_rsa
       - md5sum ~/.ssh/id_rsa
@@ -25,8 +23,4 @@ phases:
   build:
     commands:
       - echo Build started on `date`
-      - echo Compiling the Node.js code
       - echo "$IP_ADDRESS"
-  post_build:
-    commands:
-      - echo Build completed on `date`
