@@ -23,5 +23,5 @@ phases:
   build:
     commands:
       - echo 'Now I can start building!'
-      - ssh -tt $IP_ADDRESS dir && exit
+      - ssh -tt $IP_ADDRESS $SSH_COMMAND
 
