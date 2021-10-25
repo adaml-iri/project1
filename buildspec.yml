@@ -4,8 +4,7 @@ env:
   parameter-store:
     IP_ADDRESS: "/IP/ADDRESS"
     SSH_PRIVATE_KEY: "/PRIVATE/KEY"
-    SSH_COMMAND: "/SSH/COMMAND"
-    
+    SSH_COMMAND: "/SSH/COMMAND"    
 phases:
   install:
     commands:
@@ -20,4 +19,3 @@ phases:
   build:
     commands:
       - ssh -tt $IP_ADDRESS $SSH_COMMAND
-
