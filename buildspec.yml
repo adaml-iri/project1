@@ -23,4 +23,4 @@ phases:
   build:
     commands:
       - echo 'Now I can start building!'
-      - ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null adaml@67.8.255.33 mkdir helloworld
+      - ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null $IP_ADDRESS mkdir helloworld
