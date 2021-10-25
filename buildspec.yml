@@ -11,12 +11,16 @@ phases:
     commands:
       - mkdir -p ~/.ssh && chmod 0700 ~/.ssh
       - echo -n "${SSH_PRIVATE_KEY}" > ~/.ssh/id_rsa && chmod 0400 ~/.ssh/id_rsa
+     
   pre_build:
     commands:
+      - mkdir ~/.ssh/config
       - 'which ssh-agent || ( apt-get install -qq openssh-client )'
       - eval $(ssh-agent -s)
       - ssh-add ~/.ssh/id_rsa
+      
       - 'echo "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+      - ssh -tt StrictHostKeyChecking=no
       - ssh -tt $IP_ADDRESS $SSH_COMMAND
   build:
     commands:
