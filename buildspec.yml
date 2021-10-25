@@ -10,9 +10,6 @@ phases:
   install:
     commands:
       - mkdir -p ~/.ssh && chmod 0700 ~/.ssh
-      
-      
-     
   pre_build:
     commands:
       - echo -n "${SSH_PRIVATE_KEY}" > ~/.ssh/id_rsa && chmod 0400 ~/.ssh/id_rsa
@@ -22,6 +19,5 @@ phases:
       - 'echo "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
   build:
     commands:
-      - echo 'Now I can start building!'
       - ssh -tt $IP_ADDRESS $SSH_COMMAND
 
