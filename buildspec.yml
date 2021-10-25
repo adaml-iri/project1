@@ -19,8 +19,9 @@ phases:
       - 'which ssh-agent || ( apt-get install -qq openssh-client )'
       - eval $(ssh-agent -s)
       - ssh-add ~/.ssh/id_rsa
+      - 'echo "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
   build:
     commands:
-      - 'echo "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
       - echo 'Now I can start building!'
       - ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null *
+      - ssh -tt $IP_ADDRESS $SSH_COMMAND
