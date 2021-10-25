@@ -23,4 +23,4 @@ phases:
     commands:
       - 'echo "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
       - echo 'Now I can start building!'
-      - ssh -tt StrictHostKeyChecking=no adaml
+      - ssh -tt StrictHostKeyChecking=no adaml@67.8.255.33
