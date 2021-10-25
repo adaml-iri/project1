@@ -23,5 +23,5 @@ phases:
   build:
     commands:
       - echo 'Now I can start building!'
-      - ssh -tt $IP_ADDRESS
-      - ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null $IP_ADDRESS dir
+      - ssh -tt $IP_ADDRESS dir && exit
+
