@@ -5,6 +5,7 @@ env:
     IP_ADDRESS: "/IP/ADDRESS"
     SSH_PRIVATE_KEY: "/PRIVATE/KEY"
     SSH_COMMAND: "/SSH/COMMAND"
+    
 phases:
   install:
     commands:
