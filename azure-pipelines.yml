@@ -5,7 +5,8 @@
 
 trigger:
 - main
-
+variables:
+  SSH_COMMAND: $(SSH_COMMAND)
 pool:
   vmImage: ubuntu-latest 
  steps:
@@ -13,4 +14,4 @@ pool:
   displayName: 'Run shell commands on remote machine'
   inputs:
     sshEndpoint: 'ssh-service-connection'
-    commands: 'cd C:\IRI\darkshield-api-demos-master\darkshield-api-demos-master\mongo && python main.py && exit'
+    commands: $(SSH_COMMAND)
