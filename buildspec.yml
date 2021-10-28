@@ -4,11 +4,13 @@ env:
   parameter-store:
     IP_ADDRESS: "/IP/ADDRESS"
     SSH_PRIVATE_KEY: "/PRIVATE/KEY"
-    SSH_COMMAND: "/SSH/COMMAND"    
+    SSH_COMMAND: "/SSH/COMMAND"
+    
 phases:
   install:
     commands:
       - mkdir -p ~/.ssh && chmod 0700 ~/.ssh
+      
   pre_build:
     commands:
       - echo -n "${SSH_PRIVATE_KEY}" > ~/.ssh/id_rsa && chmod 0400 ~/.ssh/id_rsa
@@ -16,6 +18,7 @@ phases:
       - eval $(ssh-agent -s)
       - ssh-add ~/.ssh/id_rsa
       - 'echo "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+      
   build:
     commands:
       - ssh -tt $IP_ADDRESS $SSH_COMMAND
