@@ -7,13 +7,10 @@ trigger:
 - main
 
 pool:
-  vmImage: ubuntu-latest
-
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+  vmImage: ubuntu-latest 
+ steps:
+- task: SSH@0
+  displayName: 'Run shell commands on remote machine'
+  inputs:
+    sshEndpoint: 'ssh-service-connection'
+    commands: 'cd C:\IRI\darkshield-api-demos-master\darkshield-api-demos-master\mongo && python main.py && exit'
